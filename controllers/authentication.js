@@ -23,10 +23,9 @@ User.findOne({email:email}, function(err, excistingUser){
   if(excistingUser){
   return  res.status(422).send({error:"User does already excist"})
   }
-  const user = new User({
-    email:email,
-    password:password,
-  });
+  const user = new User(
+    req.body
+  );
   user.save(function(err, user){
     if(err){
       return next(err);

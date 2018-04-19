@@ -25,7 +25,13 @@ return numberOfCorrects;
 })
 
 ProgressKeeperSchema.virtual("percentCorrect").get(function(){
-let percentage=this.numberOfCorrectAnswers/this.progress.length;
+  let questionsCounter=0;
+this.progress.forEach(function(question){
+    if(question.isCorrect!="video"){
+      questionsCounter+=1;
+    }
+  })
+let percentage=this.numberOfCorrectAnswers/questionsCounter;
 percentage*=100;
 percentage=Math.round(percentage)
 return percentage;

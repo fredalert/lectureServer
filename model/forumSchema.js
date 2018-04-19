@@ -5,8 +5,9 @@ const Schema = mongoose.Schema;
 var ForumSchema =new Schema({
 
     author:String,
-    time:String,
+    time:{ type: Date, default: Date.now },
     comment:String,
+    imageUrl:String,
 }
 );
 
