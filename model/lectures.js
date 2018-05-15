@@ -5,19 +5,25 @@ const Schema = mongoose.Schema;
 var ForumSchema=require("./forumSchema");
 var lectureSchema = new Schema(
 {
-  isPublished:{type:Boolean,
-              default:false},
-  lecture:{type:String},
-  icon:{type:String},
-  category:{type:String},
-  field:{type:String},
-  description:{type:String},
-  lectureImage:{type:String},
+  information:{
+    isPublished:{type:Boolean,
+                default:false},
+    lecture:{type:String},
+    icon:{type:String},
+    category:{type:String},
+    field:{type:String},
+    description:{type:String},
+    lectureImage:{type:String},
+    links:[{
+            link:{type:String},
+            label:{type:String}
+              }],
+    creator:{
+      type:Schema.Types.ObjectId,
+      ref:"User"
+    }
+},
   forum:[ForumSchema],
-  creator:{
-    type:Schema.Types.ObjectId,
-    ref:"User"
-  },
   questions: [{
       isVideo:{type:Boolean, default:false},
       videoUrl:{type:String, default:""},

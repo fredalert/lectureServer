@@ -10,6 +10,7 @@ const busboy = require('connect-busboy');
 const fs= require("fs")
 const cors= require("cors")
 const fileUpload=require("express-fileupload")
+const simulateLatency = require('express-simulate-latency');
 
 
 
@@ -23,6 +24,8 @@ mongoose.connect('mongodb://localhost/videoLecture' , {useMongoClient: true,});
 app.use(morgan("combined"));
 app.use(cors());
 app.use(fileUpload());
+var smallLag = simulateLatency({ min: 100, max: 500 });
+app.use(smallLag);
 app.use(express.static(path.join(__dirname, 'public')))
 
 
@@ -78,6 +81,6 @@ router(app);
 
 const port  = process.env.PORT || 3090;
 const server = http.createServer(app);
-//"http://192.168.1.3"
-server.listen(3090);
+//"http://110.101.1.129"
+server.listen(3090, "192.168.1.2" );
 console.log("Server listeing on port", port)

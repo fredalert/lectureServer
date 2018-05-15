@@ -50,7 +50,10 @@ exports.getUsers = function(req, res, next){
 }
 
 exports.addCreatedLectureToUser= function(req,res, next){
+  console.log("BAAAJJJJSSSSSSS")
   var query= {_id:req.params._id};
+  console.log("REQ:BODY IISSSSS", req.body)
+    console.log("_id", req.params._id)
 
   var update= { $set: {createdLectures:req.body}
   }

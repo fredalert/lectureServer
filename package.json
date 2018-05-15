@@ -16,6 +16,7 @@
     "cors": "^2.8.4",
     "express": "^4.16.2",
     "express-fileupload": "^0.4.0",
+    "express-simulate-latency": "github:j-/express-simulate-latency",
     "fs": "0.0.1-security",
     "jwt-decode": "^2.2.0",
     "jwt-simple": "^0.5.1",
