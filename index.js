@@ -10,22 +10,29 @@ const busboy = require('connect-busboy');
 const fs= require("fs")
 const cors= require("cors")
 const fileUpload=require("express-fileupload")
-const simulateLatency = require('express-simulate-latency');
+
 
 
 
 //Db setup
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://localhost/videoLecture' , {useMongoClient: true,});
+mongoose.connect('mongodb://fred:fred@ds129560.mlab.com:29560/interaktivmedicin', {useMongoClient: true}, function(err){
+    if(err) {
+        console.log('Some problem with the connection ' +err);
+    } else {
+        console.log('The Mongoose connection is reasdy');
+    }
+})
+
+ // LOCAL USE: mongoose.connect('mongodb://localhost/videoLecture' , {useMongoClient: true,});
 
 //App setup
 
 app.use(morgan("combined"));
 app.use(cors());
 app.use(fileUpload());
-var smallLag = simulateLatency({ min: 100, max: 500 });
-app.use(smallLag);
+
 app.use(express.static(path.join(__dirname, 'public')))
 
 

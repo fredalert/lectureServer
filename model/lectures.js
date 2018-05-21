@@ -26,6 +26,7 @@ var lectureSchema = new Schema(
   forum:[ForumSchema],
   questions: [{
       isVideo:{type:Boolean, default:false},
+      videoName:{type:String},
       videoUrl:{type:String, default:""},
       questionForum:[ForumSchema],
       question:{type:String},

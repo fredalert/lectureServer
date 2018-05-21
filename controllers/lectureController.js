@@ -42,16 +42,17 @@ lect.save(function(err, user){
 
 
 exports.updateLecture=function(req, res, next){
-  const lect= req.body;
-  const query={_id:req.params.Lid};
-  const update= {$set:{lecture:lect.lecture,
-                        description:lect.description,
-                        questions:lect.questions}};
-  const options={new:true};
+  const lecture= req.body;
+  const query={_id:req.params.lId};
+  const update= {$set:{information:lecture.information,
 
-  Lectures.findByIdAndUpdate(req.params._Lid, update, options, function(err, lecture){
+                        questions:lecture.questions}};
+
+
+  Lectures.findByIdAndUpdate(query, update, function(err, lecture){
     if(err){
       throw err;}
+      console.log("UPDATED LECTURE IS, :", lecture)
     return res.json(lecture)
   })
 }
